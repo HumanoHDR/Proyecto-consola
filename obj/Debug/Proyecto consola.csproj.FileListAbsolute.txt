@@ -1,0 +1,8 @@
+C:\Users\1DAW\source\repos\Proyecto consola\obj\Debug\Proyecto consola.csproj.AssemblyReference.cache
+C:\Users\1DAW\source\repos\Proyecto consola\obj\Debug\Proyecto consola.csproj.SuggestedBindingRedirects.cache
+C:\Users\1DAW\source\repos\Proyecto consola\obj\Debug\Proyecto consola.csproj.CoreCompileInputs.cache
+C:\Users\1DAW\source\repos\Proyecto consola\bin\Debug\Proyecto consola.exe.config
+C:\Users\1DAW\source\repos\Proyecto consola\bin\Debug\Proyecto consola.exe
+C:\Users\1DAW\source\repos\Proyecto consola\bin\Debug\Proyecto consola.pdb
+C:\Users\1DAW\source\repos\Proyecto consola\obj\Debug\Proyecto consola.exe
+C:\Users\1DAW\source\repos\Proyecto consola\obj\Debug\Proyecto consola.pdb
