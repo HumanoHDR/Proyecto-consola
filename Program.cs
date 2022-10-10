@@ -24,7 +24,9 @@ namespace Proyecto_consola
             Console.WriteLine("Uso de e (e)");
             Console.WriteLine("Hacer 1/x (x)");
             Console.WriteLine("Valor absoluto |x| (abs)");
+            Console.WriteLine("Calcular el seno (sen)");
             Console.WriteLine("Calcular la raiz cuadrada (raiz)");
+            Console.WriteLine("Factorial de un numero (fact)");
             Console.Write("Que operacion desea realizar: ");
             string devolucion = Console.ReadLine();
             return (devolucion);
@@ -57,7 +59,7 @@ namespace Proyecto_consola
         public static double Operacions(string opcion, string operador1, string operador2)
         {
             
-            double d = 0;
+            double d = default(int);
             string resultado = "El resultado de la ";
             Console.WriteLine();
             switch (opcion)
@@ -95,14 +97,23 @@ namespace Proyecto_consola
                     Xpartido();
                     break;
                 case "abs":
-                    Absolut();
+                    d = Absoluto(Convert.ToDouble(Llamada()));
+                    Console.WriteLine($"El resultado es {d}");
                     break;
-                case "cose":
-                    d = Cosen();
+                case "sen":
+                    d = Sen();
                     Console.WriteLine($"El resultado es {d}");
                     break;
                 case "raiz":
                     d = Raiz();
+                    Console.WriteLine($"El resultado es {d}");
+                    break;
+                case "fact":
+                    d = Factorial();
+                    Console.WriteLine($"El resultado es {d}");
+                    break;
+                case "cose":
+                    d = Cose();
                     Console.WriteLine($"El resultado es {d}");
                     break;
                 default:
@@ -110,8 +121,7 @@ namespace Proyecto_consola
                     break;
                 
             };
-            return d;
-            //tranquilo señor poeta, pues chupamela esta                
+            return d;               
         }
         static bool Final(bool bucle)
         {
@@ -223,27 +233,13 @@ namespace Proyecto_consola
             ope1 = Llamada();
             Console.WriteLine("El resultado de la operacion es " + 1/Convert.ToDouble(ope1));
         }
-        public static void Absolut()
-        {
-            string ope;
-            double ope2;
-            ope = Llamada();
-            ope2 = Convert.ToDouble(ope);
-            if (Convert.ToDouble(ope) < 0)
-            {
-                ope2 = ope2 - ope2 - ope2;
-                
-            }
-            Console.WriteLine($"El valor absoluto de la operacion es {ope2}");
-
-        }
-        public static double Cosen()
+        public static double Sen()
         {
             double ope1 = Convert.ToDouble(Llamada());
             double sen = (ope1 * pi / 180);
             return sen;
         }
-        public static double valorAbsoluto(double numero)
+        public static double Absoluto(double numero)
         {
             if (numero < 0)
             {
@@ -254,9 +250,9 @@ namespace Proyecto_consola
         public static double Raiz()
         {
             double ope1 = Convert.ToDouble(Llamada());
-            double margen = 0.000001;
+            double margen = 0.0000000001;
             double estimacion = 1.0;
-            while (valorAbsoluto((estimacion * estimacion) - ope1) >= margen)
+            while (Absoluto((estimacion * estimacion) - ope1) >= margen)
             {
                 double cociente = ope1 / estimacion;
                 double promedio = (cociente + estimacion) / 2.0;
@@ -264,5 +260,28 @@ namespace Proyecto_consola
             }
             return estimacion;
         }
+        public static double Factorial()
+        {
+            double resultado = 1;
+            double ope1 = Convert.ToDouble(Llamada());
+            for(double i= ope1;i > 0; i--)
+            {
+                resultado = i * resultado;
+            }
+            return resultado;
+        }s
+        public static double Cose()
+        {
+            double resultado;
+            return resultado;
+        }
+         /*public static double Coseno()
+            {
+                double ope1 = Convert.ToDouble(Llamada());
+                double angur = (ope1 * (pi / 180));
+                double radi = (double)(pi / 2.0) - angur;
+                double ang = (radi * (pi / 180));
+                return ang;
+            }*/
+        }
     }
-}
