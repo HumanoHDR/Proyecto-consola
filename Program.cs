@@ -6,13 +6,13 @@ namespace Proyecto_consola
     public class Program
     {
         const double pi = 3.1415926535897932384626433832795;
-        public 
+        public
             static void Main(string[] args)
-        { 
+        {
             bool loops = false;
             while (!loops)
             {
-               Calculadora();
+                Calculadora();
             };
         }
         static public string Cientifica()
@@ -27,6 +27,7 @@ namespace Proyecto_consola
             Console.WriteLine("Calcular el seno (sen)");
             Console.WriteLine("Calcular la raiz cuadrada (raiz)");
             Console.WriteLine("Factorial de un numero (fact)");
+            Console.WriteLine("Logaritmo base 10 de un numero (log)");
             Console.Write("Que operacion desea realizar: ");
             string devolucion = Console.ReadLine();
             return (devolucion);
@@ -39,6 +40,7 @@ namespace Proyecto_consola
             do
             {
                 //comprobante = true;
+                operador = operador.Replace('.', ',');
                 comprobante = double.TryParse(operador, out numerico);
                 if (!comprobante)
                 {
@@ -58,7 +60,7 @@ namespace Proyecto_consola
         }
         public static double Operacions(string opcion, string operador1, string operador2)
         {
-            
+            double ope1, ope;
             double d = default(int);
             string resultado = "El resultado de la ";
             Console.WriteLine();
@@ -88,7 +90,11 @@ namespace Proyecto_consola
                     Console.WriteLine($"El resultado de la operacion es {d}");
                     break;
                 case "l":
-                    ElevarX();
+                    Console.WriteLine("Que numero quiere elevar");
+                    ope1 = Convert.ToDouble(Llamada());
+                    Console.WriteLine($"A que numero lo quiere elevar");
+                    ope = Convert.ToDouble(Llamada());
+                    ElevarX(ope1, ope);
                     break;
                 case "e":
                     Numeroe();
@@ -116,12 +122,20 @@ namespace Proyecto_consola
                     d = Cose();
                     Console.WriteLine($"El resultado es {d}");
                     break;
+                case "log":
+                    d = Log();
+                    Console.WriteLine($"El resultado es {d}");
+                    break;
+                case "1":
+                    d = X1(Convert.ToDouble(Llamada()));
+                    Console.WriteLine($"El resultado es {d}");
+                    break;
                 default:
                     Console.WriteLine("La operacion que desea realizar no esta en esta calculadora");
                     break;
-                
+
             };
-            return d;               
+            return d;
         }
         static bool Final(bool bucle)
         {
@@ -152,7 +166,7 @@ namespace Proyecto_consola
         public static void Calculadora()
         {
             string operador1 = String.Empty, operador2 = String.Empty;
-            
+
             string devolucion;
             Console.Write("Que calculadora desea usar (simple/cientifica)");
             devolucion = Console.ReadLine();
@@ -170,19 +184,14 @@ namespace Proyecto_consola
             }
             else Console.WriteLine("El tipo de calculadora no existe");
         }
-        public static void ElevarX()
+        public static double ElevarX(double ope1, double ope)
         {
-            string ope1, ope;
             double d = 1;
-            Console.WriteLine("Que numero quiere elevar");
-            ope1 = Llamada();
-            Console.WriteLine($"A que numero lo quiere elevar");
-            ope = Llamada();
-            for (int i = 0; i < Convert.ToDouble(ope); i++)
+            for (int i = 0; i < ope; i++)
             {
-                d = Convert.ToDouble(ope1) * d;
+                d = ope1 * d;
             }
-            Console.WriteLine($"El resultado de la operacion es {d}");
+            return d;
         }
         public static double Suma(string operador1, string operador2)
         {
@@ -231,7 +240,7 @@ namespace Proyecto_consola
         {
             string ope1;
             ope1 = Llamada();
-            Console.WriteLine("El resultado de la operacion es " + 1/Convert.ToDouble(ope1));
+            Console.WriteLine("El resultado de la operacion es " + 1 / Convert.ToDouble(ope1));
         }
         public static double Sen()
         {
@@ -264,24 +273,45 @@ namespace Proyecto_consola
         {
             double resultado = 1;
             double ope1 = Convert.ToDouble(Llamada());
-            for(double i= ope1;i > 0; i--)
+            for (double i = ope1; i > 0; i--)
             {
                 resultado = i * resultado;
             }
             return resultado;
-        }s
+        }
         public static double Cose()
         {
-            double resultado;
+            double resultado = 0;
             return resultado;
         }
-         /*public static double Coseno()
-            {
-                double ope1 = Convert.ToDouble(Llamada());
-                double angur = (ope1 * (pi / 180));
-                double radi = (double)(pi / 2.0) - angur;
-                double ang = (radi * (pi / 180));
-                return ang;
-            }*/
+        public static double Log()
+        {
+            double ope1 = Convert.ToDouble(Llamada());
+            double resultado = 0.001;
+            double igualdad = 0.001;
+            double bases = 10;
+            while (bases == ElevarX(ope1, X1(igualdad)))
+            { 
+                igualdad = resultado + igualdad;
+            }  
+            return igualdad;
+
         }
+        public static double X1(double ope1)
+        {
+
+            double resultado = 1 / ope1;
+            return resultado;
+
+        }
+        /*public static double Coseno()
+           {
+               double ope1 = Convert.ToDouble(Llamada());
+               double angur = (ope1 * (pi / 180));
+               double radi = (double)(pi / 2.0) - angur;
+               double ang = (radi * (pi / 180));
+               return ang;
+           }*/
     }
+}
+
